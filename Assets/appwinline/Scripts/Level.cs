@@ -4,7 +4,7 @@ public class Level : MonoBehaviour
 {
     private void Start()
     {
-        transform.position += Vector3.right * 25.0f;
+        transform.position += Vector3.down * 25.0f;
     }
 
     private void Update()
