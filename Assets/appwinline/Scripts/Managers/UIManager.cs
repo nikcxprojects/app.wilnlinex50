@@ -22,6 +22,12 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        Cup.OnStartShaking += () =>
+        {
+            score = 0;
+            scoreText.text = $"{score}";
+        };
+
         Cup.OnEndShaking += (dice1Value, dice2Value, dice3Value) =>
         {
             score += (dice1Value + dice2Value + dice3Value);

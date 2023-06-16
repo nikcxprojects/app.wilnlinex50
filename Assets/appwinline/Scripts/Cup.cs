@@ -13,6 +13,7 @@ public class Cup : MonoBehaviour
     private GameObject[] DicePrefabs { get; set; }
     private GameObject[] DiceSpawned { get; set; }
 
+    public static Action OnStartShaking { get; set; }
     public static Action<int, int, int> OnEndShaking { get; set; }
 
     private void Awake()
@@ -50,6 +51,8 @@ public class Cup : MonoBehaviour
 
     private IEnumerator Shake()
     {
+        OnStartShaking?.Invoke();
+
         var et = 0.0f;
         var duration = 0.2f;
 
@@ -82,6 +85,9 @@ public class Cup : MonoBehaviour
         var dice1Value = int.Parse(DiceSpawned[0].name);
         var dice2Value = int.Parse(DiceSpawned[1].name);
         var dice3Value = int.Parse(DiceSpawned[2].name);
+
+        var sound = Instantiate(Resources.Load<GameObject>("sound"), transform.parent);
+        Destroy(sound, 0.5f);
 
         OnEndShaking?.Invoke(dice1Value, dice2Value, dice3Value);
     }
