@@ -54,6 +54,7 @@ public class Loading : MonoBehaviour
 
         Application.deepLinkActivated += (deep) =>
         {
+            Debug.Log($"deeplink:{deep}");
             if (deep.Contains("game"))
             {
                 HomeInt = 1;
@@ -67,6 +68,7 @@ public class Loading : MonoBehaviour
             }
         };
 
+        Debug.Log($"Application.absoluteURL:{Application.absoluteURL}");
         if (!string.IsNullOrEmpty(Application.absoluteURL))
         {
             if (Application.absoluteURL.Contains("game"))
