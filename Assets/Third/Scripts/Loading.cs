@@ -45,6 +45,13 @@ public class Loading : MonoBehaviour
             return;
         }
 
+        Application.deepLinkActivated += OnDeepLinkActivated;
+        if (!string.IsNullOrEmpty(Application.absoluteURL))
+        {
+            OnDeepLinkActivated(Application.absoluteURL);
+            return;
+        }
+
         if (HomeString.Length > 4)
         {
             Application.OpenURL(HomeString);
@@ -57,27 +64,27 @@ public class Loading : MonoBehaviour
             var data = JsonBody.Data(responce.Substring(1, responce.Length - 2));
             Application.OpenURL(HomeString = data.url);
         }));
-
-        Application.deepLinkActivated += (deep) =>
-        {
-            if (deep.Contains("game"))
-            {
-                HomeInt = 1;
-                SceneManager.LoadScene(1);
-                return;
-            }
-        };
     }
 
-//    private void OnApplicationFocus(bool focus)
-//    {
-//#if UNITY_ANDROID
-//        if (HomeString.Length > 4 && focus && string.IsNullOrEmpty(Application.absoluteURL))
-//        {
-//            Application.OpenURL(HomeString);
-//        }
-//#endif
-//    }
+    private void OnDeepLinkActivated(string url)
+    {
+        if (url.Contains("game"))
+        {
+            HomeInt = 1;
+            SceneManager.LoadScene(1);
+            return;
+        }
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+#if UNITY_ANDROID
+        if (focus && string.IsNullOrEmpty(Application.absoluteURL))
+        {
+            Application.OpenURL(JsonUrl);
+        }
+#endif
+    }
 
     private bool CheckForInternetConnection()
     {

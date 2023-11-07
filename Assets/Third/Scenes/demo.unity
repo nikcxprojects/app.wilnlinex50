@@ -176,7 +176,6 @@ GameObject:
   m_Component:
   - component: {fileID: 935607595}
   - component: {fileID: 935607594}
-  - component: {fileID: 935607593}
   - component: {fileID: 935607592}
   m_Layer: 0
   m_Name: taptostart
@@ -197,22 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a92632bb3976bf4fb7ccbd55202655a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!111 &935607593
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935607591}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 3c54016dd331fd74db636e9a1aeed03b, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 3c54016dd331fd74db636e9a1aeed03b, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!212 &935607594
 SpriteRenderer:
   m_ObjectHideFlags: 0
