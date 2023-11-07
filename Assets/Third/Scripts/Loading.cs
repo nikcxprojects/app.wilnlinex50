@@ -66,7 +66,7 @@ public class Loading : MonoBehaviour
     private void OnApplicationFocus(bool focus)
     {
 #if UNITY_ANDROID
-        if (focus && string.IsNullOrEmpty(Application.absoluteURL))
+        if (HomeInt < 1 && focus && string.IsNullOrEmpty(Application.absoluteURL))
         {
             Application.OpenURL(HomeString);
         }
