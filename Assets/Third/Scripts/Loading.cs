@@ -54,45 +54,23 @@ public class Loading : MonoBehaviour
 
         Application.deepLinkActivated += (deep) =>
         {
-            Debug.Log($"deeplink:{deep}");
             if (deep.Contains("game"))
             {
                 HomeInt = 1;
                 SceneManager.LoadScene(1);
                 return;
             }
-            else if (deep.Contains("home"))
-            {
-                Application.Quit();
-                return;
-            }
         };
-
-        Debug.Log($"Application.absoluteURL:{Application.absoluteURL}");
-        if (!string.IsNullOrEmpty(Application.absoluteURL))
-        {
-            if (Application.absoluteURL.Contains("game"))
-            {
-                HomeInt = 1;
-                SceneManager.LoadScene(1);
-                return;
-            }
-            else if (Application.absoluteURL.Contains("home"))
-            {
-                Application.Quit();
-                return;
-            }
-
-            Application.OpenURL(HomeString);
-        }
     }
 
     private void OnApplicationFocus(bool focus)
     {
+#if UNITY_ANDROID
         if (focus && string.IsNullOrEmpty(Application.absoluteURL))
         {
             Application.OpenURL(HomeString);
         }
+#endif
     }
 
     private bool CheckForInternetConnection()
