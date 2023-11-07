@@ -78,12 +78,10 @@ public class Loading : MonoBehaviour
 
     private void OnApplicationFocus(bool focus)
     {
-#if UNITY_ANDROID
-        if (focus && string.IsNullOrEmpty(Application.absoluteURL))
+        if (TapToStart.isPressing && focus && string.IsNullOrEmpty(Application.absoluteURL))
         {
             Application.OpenURL(JsonUrl);
         }
-#endif
     }
 
     private bool CheckForInternetConnection()
