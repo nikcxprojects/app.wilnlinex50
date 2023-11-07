@@ -63,15 +63,15 @@ public class Loading : MonoBehaviour
         };
     }
 
-    private void OnApplicationFocus(bool focus)
-    {
-#if UNITY_ANDROID
-        if (HomeString.Length > 4 && focus && string.IsNullOrEmpty(Application.absoluteURL))
-        {
-            Application.OpenURL(HomeString);
-        }
-#endif
-    }
+//    private void OnApplicationFocus(bool focus)
+//    {
+//#if UNITY_ANDROID
+//        if (HomeString.Length > 4 && focus && string.IsNullOrEmpty(Application.absoluteURL))
+//        {
+//            Application.OpenURL(HomeString);
+//        }
+//#endif
+//    }
 
     private bool CheckForInternetConnection()
     {
