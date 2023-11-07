@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Net;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -24,9 +25,13 @@ public class Loading : MonoBehaviour
         set => PlayerPrefs.SetString("homestring", value);
     }
 
-    private void Awake()
+    private async void Awake()
     {
-        Spinner.Instant();
+        while(!TapToStart.isPressing)
+        {
+            await Task.Yield();
+        }
+
         if (!CheckForInternetConnection())
         {
             NoInet.Instant();
@@ -46,6 +51,7 @@ public class Loading : MonoBehaviour
             return;
         }
 
+        Spinner.Instant();
         StartCoroutine(GetJsonData((responce) =>
         {
             var data = JsonBody.Data(responce.Substring(1, responce.Length - 2));

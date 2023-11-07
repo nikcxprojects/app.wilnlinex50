@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class TapToStart : MonoBehaviour
 {
-    private bool isTap;
-    [SerializeField] GameObject loadingGo;
-
+    public static bool isPressing;
     private void Update()
     {
-        if(!isTap && Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0))
         {
-            isTap = true;
-            loadingGo.SetActive(true);
+            isPressing = true;
+            Destroy(gameObject);
         }
     }
 }
