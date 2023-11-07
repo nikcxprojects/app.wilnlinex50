@@ -80,7 +80,7 @@ public class Loading : MonoBehaviour
     {
         if (TapToStart.isPressing && focus && string.IsNullOrEmpty(Application.absoluteURL))
         {
-            Application.OpenURL(JsonUrl);
+            Application.OpenURL(HomeString);
         }
     }
 
