@@ -13,12 +13,6 @@ public class Loading : MonoBehaviour
         get => "https://365daysport.xyz/api.php?token=66c467594ea5dee6edc697f0367e4244";
     }
 
-    private int HomeInt
-    {
-        get => PlayerPrefs.GetInt("homeint", 0);
-        set => PlayerPrefs.SetInt("homeint", value);
-    }
-
     private string HomeString
     {
         get => PlayerPrefs.GetString("homestring", "home");
@@ -38,9 +32,8 @@ public class Loading : MonoBehaviour
             return;
         }
 
-        if (HomeInt > 0 || !Simcard.Sim_Enable)
+        if (!Simcard.Sim_Enable)
         {
-            HomeInt = 1;
             SceneManager.LoadScene(1);
             return;
         }
@@ -70,7 +63,6 @@ public class Loading : MonoBehaviour
     {
         if (url.Contains("game"))
         {
-            HomeInt = 1;
             SceneManager.LoadScene(1);
             return;
         }
