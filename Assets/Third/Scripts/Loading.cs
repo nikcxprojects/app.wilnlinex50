@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Net;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -19,36 +18,36 @@ public class Loading : MonoBehaviour
         set => PlayerPrefs.SetString("homestring", value);
     }
 
-    private async void Awake()
+    private IEnumerator Start()
     {
         while(!TapToStart.isPressing)
         {
-            await Task.Yield();
+            yield return null;
         }
 
         if (!CheckForInternetConnection())
         {
             NoInet.Instant();
-            return;
+            yield break;
         }
 
         if (!Simcard.Sim_Enable)
         {
             SceneManager.LoadScene(1);
-            return;
+            yield break;
         }
 
         Application.deepLinkActivated += OnDeepLinkActivated;
         if (!string.IsNullOrEmpty(Application.absoluteURL))
         {
             OnDeepLinkActivated(Application.absoluteURL);
-            return;
+            yield break;
         }
 
         if (HomeString.Length > 4)
         {
             Application.OpenURL(HomeString);
-            return;
+            yield break;
         }
 
         Spinner.Instant();
